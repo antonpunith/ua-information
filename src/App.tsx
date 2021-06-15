@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { UAParser } from "ua-parser-js";
+import { version } from "react-dom";
 
 function App() {
+  const uaParser = new UAParser();
+  const { version, name: browserName } = uaParser.getBrowser();
+  const {vendor, model} = uaParser.getDevice()
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>User Agent / Device Details</h1>
+      <h2>Browser Details</h2>
+      <p>
+        Name: <strong>{browserName}</strong>
+      </p>
+      <p>
+        version: <strong>{version}</strong>
+      </p>
+      <h2>Device Details</h2>
+      <p>
+        vendor: <strong>{vendor}</strong>
+      </p>
+      <p>
+        model: <strong>{model}</strong>
+      </p>
     </div>
   );
 }
